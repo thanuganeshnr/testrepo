@@ -1,6 +1,6 @@
 
 <html><head>
-  <script src="https://eu-gateway.mastercard.com/static/checkout/checkout.min.js" data-error="errorCallback" data-cancel="cancelCallback"></script><script type="text/javascript">
+  <script src="https://test-mib.mtf.gateway.mastercard.com/static/checkout/checkout.min.js" data-error="errorCallback" data-cancel="cancelCallback"></script><script type="text/javascript">
     var params = new URLSearchParams(window.location.search);
     var sessionId = params.get("sessionId");
     function errorCallback(error) {console.log(JSON.stringify(error));}
