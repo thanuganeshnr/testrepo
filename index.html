@@ -6,7 +6,7 @@
     function errorCallback(error) {console.log(JSON.stringify(error));}
     function cancelCallback() {console.log('Payment cancelled');}
     console.log(sessionId);
-    Checkout.configure({session: {id: sessionId}});</script>
-</head><body>       ...
-      <div id="embed-target"> </div><input type="button" value="Pay with Embedded Page" onclick="Checkout.showEmbeddedPage('#embed-target');" /><input type="button" value="Pay with Payment Page" onclick="Checkout.showPaymentPage();" />       ...
-    </body></html>
+    Checkout.configure({session: {id: sessionId}});
+  Checkout.showPaymentPage();
+  </script>
+</head><body></body></html>
