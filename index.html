@@ -1,12 +1,57 @@
-
-<html><head>
-  <script src="https://test-mib.mtf.gateway.mastercard.com/checkout/version/62/checkout.js" data-error="errorCallback" data-cancel="cancelCallback"></script><script type="text/javascript">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://test-mib.mtf.gateway.mastercard.com/checkout/version/62/checkout.js"
+          data-error="errorCallback"
+          data-cancel="cancelCallback"
+          data-complete="completeCallback"></script>
+  <script type="text/javascript">
     var params = new URLSearchParams(window.location.search);
     var sessionId = params.get("sessionId");
-    function errorCallback(error) {console.log(JSON.stringify(error));}
-    function cancelCallback() {console.log('Payment cancelled');}
-    console.log(sessionId);
-    Checkout.configure({session: {id: sessionId}});
-  Checkout.showPaymentPage();
+
+    function errorCallback(error) {
+     console.log('Payment errorCallback');
+      console.log(JSON.stringify(error));
+    }
+
+    function cancelCallback() {
+      console.log('Payment cancelled');
+    }
+
+   function completeCallback(resultIndicator, sessionVersion) {
+      console.log('Payment complete');
+      console.log('Result Indicator:', resultIndicator);
+      console.log('Session Version:', sessionVersion);
+      // Redirect to complete handler
+      var redirectUrl = "https://test-mib.mtf.gateway.mastercard.com/checkout/receipt/";
+<!--      redirectUrl += `?resultIndicator=${resultIndicator}&sessionVersion=${sessionVersion}`;-->
+      window.location.href = redirectUrl;
+    }
+
+    window.onload = function() {
+      if (sessionId) {
+        Checkout.configure({ session: { id: sessionId } });
+        Checkout.showLightbox();
+      } else {
+        console.error('Session ID not provided');
+      }
+    }
   </script>
-</head><body></body></html>
+  <style>
+    .payment-container {
+      width: 100%;
+      height: 100%;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+<div class="payment-container"></div>
+</body>
+</html>
