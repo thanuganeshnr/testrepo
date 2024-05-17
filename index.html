@@ -6,7 +6,7 @@
   <script src="https://test-mib.mtf.gateway.mastercard.com/checkout/version/62/checkout.js"
           data-error="errorCallback"
           data-cancel="cancelCallback"
-          data-complete="https://maharajraja.github.io/Sample-loader/completeHandler.html"></script>
+          data-beforeRedirect="beforeRedirect" data-afterRedirect="afterRedirect" data-complete="completeCallback"></script>
   <script type="text/javascript">
     var params = new URLSearchParams(window.location.search);
     var sessionId = params.get("sessionId");
@@ -19,6 +19,20 @@
     function cancelCallback() {
       console.log('Payment cancelled');
     }
+
+     function beforeRedirect() {
+      console.log('before redirect');
+        }
+    
+        function afterRedirect(data) {
+              console.log('after redirect');
+          conole.log(data);
+        }
+
+      function completeCallback(response) {
+              console.log('on complete');
+          conole.log(response);
+        }
 
     window.onload = function() {
       if (sessionId) {
