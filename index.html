@@ -20,13 +20,13 @@
       console.log('Payment cancelled');
     }
 
-   function completeCallback(resultIndicator, sessionVersion) {
+   function completeCallback() {
       console.log('Payment complete');
-      console.log('Result Indicator:', resultIndicator);
-      console.log('Session Version:', sessionVersion);
+      // console.log('Result Indicator:', resultIndicator);
+      // console.log('Session Version:', sessionVersion);
       // Redirect to complete handler
       var redirectUrl = "https://test-mib.mtf.gateway.mastercard.com/checkout/receipt/";
-<!--      redirectUrl += `?resultIndicator=${resultIndicator}&sessionVersion=${sessionVersion}`;-->
+     // redirectUrl += `?resultIndicator=${resultIndicator}&sessionVersion=${sessionVersion}`;
       window.location.href = redirectUrl;
     }
 
